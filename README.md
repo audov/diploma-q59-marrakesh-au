@@ -17,21 +17,21 @@
 4. Открыть папку в IntelliJ IDEA, настроить проект (Open Module Settings--> Project --> Name = "...", -->SDK = correcto-11 java version 11.0.21)
 5. Создать файл build.gradle, настроить зависимости и установить плагины:
    plugins {
-   id 'java'
-   id "io.freefair.lombok" version "8.2.2"
-   id "io.qameta.allure" version "2.11.2"
+       id 'java'
+       id "io.freefair.lombok" version "8.2.2"
+       id "io.qameta.allure" version "2.11.2"
    }
    dependencies {
-   testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
-   testImplementation 'org.junit.vintage:junit-vintage-engine:5.8.2'
-   testImplementation 'com.codeborne:selenide:6.17.1'
-   testImplementation 'com.github.javafaker:javafaker:1.0.2'
-   testImplementation 'org.slf4j:slf4j-simple:1.7.32'
-   testImplementation 'io.rest-assured:rest-assured:5.3.1'
-   testImplementation 'io.rest-assured:json-schema-validator:4.3.0'
-   testImplementation 'com.google.code.gson:gson:2.10.1'
-   testImplementation 'mysql:mysql-connector-java:8.0.30'
-   testImplementation 'commons-dbutils:commons-dbutils:1.7'
+       testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
+       testImplementation 'org.junit.vintage:junit-vintage-engine:5.8.2'
+       testImplementation 'com.codeborne:selenide:6.17.1'
+       testImplementation 'com.github.javafaker:javafaker:1.0.2'
+       testImplementation 'org.slf4j:slf4j-simple:1.7.32'
+       testImplementation 'io.rest-assured:rest-assured:5.3.1'
+       testImplementation 'io.rest-assured:json-schema-validator:4.3.0'
+       testImplementation 'com.google.code.gson:gson:2.10.1'
+       testImplementation 'mysql:mysql-connector-java:8.0.30'
+       testImplementation 'commons-dbutils:commons-dbutils:1.7'
    }
 6. Создать директорию scr
 7. Сделать Rebuild проекта
