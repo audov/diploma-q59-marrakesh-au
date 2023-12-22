@@ -1,0 +1,1 @@
+{"uuid":"1b7d128e-7646-45ed-b7b3-4c927a03be94","name":"shouldReturnSQLDataWithoutCardNr()","children":["f962531a-e566-4012-ac1a-790ec1a22882"],"befores":[{"name":"setup","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1703264257315,"stop":1703264257370}],"afters":[],"start":1703264257313,"stop":1703264273955}

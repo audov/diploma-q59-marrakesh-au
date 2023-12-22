@@ -1,0 +1,1 @@
+{"uuid":"c7e369b7-8b55-47a5-a99a-3e2a951b8163","name":"shouldPassPurchaseDrFstCard()","children":["f9ea7dc4-bfe5-4c14-82aa-2cbe5b246d6b"],"befores":[{"name":"setup","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1703265104589,"stop":1703265104643}],"afters":[],"start":1703265104586,"stop":1703265114913}

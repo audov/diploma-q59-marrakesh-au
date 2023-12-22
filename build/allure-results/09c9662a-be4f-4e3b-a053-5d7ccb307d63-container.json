@@ -1,0 +1,1 @@
+{"uuid":"09c9662a-be4f-4e3b-a053-5d7ccb307d63","name":"shouldNotPassPurchaseDrSndCard()","children":["0b59170b-f007-431b-be07-c132fe1ad4ac"],"befores":[{"name":"setup","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1703265082623,"stop":1703265082740}],"afters":[],"start":1703265082619,"stop":1703265099127}

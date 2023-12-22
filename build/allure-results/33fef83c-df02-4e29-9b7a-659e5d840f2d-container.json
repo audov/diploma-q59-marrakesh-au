@@ -1,0 +1,1 @@
+{"uuid":"33fef83c-df02-4e29-9b7a-659e5d840f2d","name":"shouldNotPassPurchaseDrInvalidCard()","children":["abadc480-c580-4d16-afa4-c14b8f691a59"],"befores":[{"name":"setup","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1703263696974,"stop":1703263697052}],"afters":[],"start":1703263696972,"stop":1703263701306}

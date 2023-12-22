@@ -1,0 +1,1 @@
+{"uuid":"54ce9211-0b6b-4795-84a6-f5ecf446cf28","name":"shouldNotPassPurchaseCrSndCard()","children":["b8369c32-1a4b-4a64-8e8f-8e7e2c2ad9bf"],"befores":[{"name":"setup","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1703264944160,"stop":1703264950766}],"afters":[],"start":1703264944086,"stop":1703264967747}
