@@ -1,1 +1,0 @@
-{"uuid":"f8991f1e-a2ec-48e7-ada9-5845db84cbe7","name":"shouldNotPassPurchaseDrFstCardYearEmpty()","children":["f34bf01c-d016-4379-9f8f-d447639210cb"],"befores":[{"name":"setup","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1703265114917,"stop":1703265114985}],"afters":[],"start":1703265114914,"stop":1703265116007}

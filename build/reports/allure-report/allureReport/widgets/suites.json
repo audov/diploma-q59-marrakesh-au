@@ -1,1 +1,0 @@
-{"total":2,"items":[{"uid":"10fd423f92d9a42ca5d731a2992a4b02","name":"ru.netology.diploma.qa59.test.PaymentGateTest","statistic":{"failed":7,"broken":1,"skipped":0,"passed":13,"unknown":0,"total":21}},{"uid":"38c075e63816e4d17b47b7b58a91b7a1","name":"ru.netology.diploma.qa59.test.CreditGateTest","statistic":{"failed":1,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":2}}]}

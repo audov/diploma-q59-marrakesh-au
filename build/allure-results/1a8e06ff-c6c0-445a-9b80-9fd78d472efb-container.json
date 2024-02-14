@@ -1,0 +1,1 @@
+{"uuid":"1a8e06ff-c6c0-445a-9b80-9fd78d472efb","name":"shouldPassPurchaseCrFstCard()","children":["a27425a6-fa27-4df3-87f8-eb4a4136ad02"],"befores":[{"name":"setup","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1703689231115,"stop":1703689231220}],"afters":[],"start":1703689231111,"stop":1703689238573}

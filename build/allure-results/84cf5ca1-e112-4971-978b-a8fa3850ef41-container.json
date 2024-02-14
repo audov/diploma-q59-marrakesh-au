@@ -1,1 +1,0 @@
-{"uuid":"84cf5ca1-e112-4971-978b-a8fa3850ef41","name":"shouldNotPassPurchaseDrFstCardCodeCvvFormat()","children":["55626320-b267-457b-933f-7c4a2a35bc30"],"befores":[{"name":"setup","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1703265068785,"stop":1703265075051}],"afters":[],"start":1703265068717,"stop":1703265077143}

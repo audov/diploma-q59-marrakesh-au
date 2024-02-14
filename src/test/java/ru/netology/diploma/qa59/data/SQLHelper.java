@@ -8,33 +8,48 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class SQLHelper {
     private static QueryRunner runner = new QueryRunner();
 
-    private static Connection getConn() throws Exception {
+    private static Connection getConn() throws SQLException {
 
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
     }
 
     @SneakyThrows
-    public static SQLHelper.SQLCrRqst getSQLInfoCrRqst() {
-        var codeSQL = "SELECT * FROM credit_request_entity ORDER BY created DESC LIMIT 1";
+    public static String getStatusPayment() {
+        var codeSQL = "SELECT status FROM payment_entity";
         var conn = getConn();
+        return runner.query(conn, codeSQL, new ScalarHandler<String>());
+    }
+
+    @SneakyThrows
+    public static String getStatusCrRqst() {
+        var codeSQL = "SELECT status FROM credit_request_entity";
+        var conn = getConn();
+        return runner.query(conn, codeSQL, new ScalarHandler<String>());
+    }
+
+    @SneakyThrows
+    public static SQLHelper.SQLCrRqst getSQLInfoCrRqst() {
+        String codeSQL = "SELECT * FROM credit_request_entity ORDER BY created DESC LIMIT 1";
+        String conn = String.valueOf(getConn());
         return runner.query(conn, codeSQL, new BeanHandler<>(SQLCrRqst.class));
     }
 
     @SneakyThrows
     public static SQLHelper.SQLOrder getSQLInfoOrder() {
-        var codeSQL = "SELECT * FROM order_entity ORDER BY created DESC LIMIT 1";
-        var conn = getConn();
+        String codeSQL = "SELECT * FROM order_entity ORDER BY created DESC LIMIT 1";
+        String conn = String.valueOf(getConn());
         return runner.query(conn, codeSQL, new BeanHandler<>(SQLOrder.class));
     }
 
     @SneakyThrows
     public static SQLHelper.SQLPayment getSQLInfoPayment() {
-        var codeSQL = "SELECT * FROM payment_entity ORDER BY created DESC LIMIT 1";
-        var conn = getConn();
+        String codeSQL = "SELECT * FROM payment_entity ORDER BY created DESC LIMIT 1";
+        String conn = String.valueOf(getConn());
         return runner.query(conn, codeSQL, new BeanHandler<>(SQLPayment.class));
     }
 

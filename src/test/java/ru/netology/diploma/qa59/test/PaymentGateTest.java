@@ -2,12 +2,11 @@ package ru.netology.diploma.qa59.test;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import ru.netology.diploma.qa59.data.SQLHelper;
 import ru.netology.diploma.qa59.page.OfferPage;
 
+import static org.junit.Assert.assertEquals;
 import static ru.netology.diploma.qa59.data.DataHelper.*;
 import static ru.netology.diploma.qa59.data.SQLHelper.*;
 
@@ -23,6 +22,11 @@ public class PaymentGateTest {
         Selenide.open("http://localhost:8080");
     }
 
+    @AfterEach
+    void cleanDB() {
+        SQLHelper.cleanDatabase();
+    }
+
     @Test
     public void shouldLoadPage() {
         OfferPage paymentGate = new OfferPage();
@@ -35,14 +39,16 @@ public class PaymentGateTest {
         paymentGate.getPurchaseDr();
         var fstCardInfo = getFstCardInfo();
         paymentGate.fillCardFormSuccess(fstCardInfo);
+        assertEquals("APPROVED", SQLHelper.getStatusPayment());
     }
 
     @Test
-    public void shouldNotPassPurchaseDrSndCard() { // в баг-репорт
+    public void shouldNotPassPurchaseDrSndCard() {
         OfferPage paymentGate = new OfferPage();
         paymentGate.getPurchaseDr();
         var sndCardInfo = getSndCardInfo();
         paymentGate.fillCardFormFail(sndCardInfo);
+        assertEquals("DECLINED", SQLHelper.getStatusPayment());
     }
 
     @Test
@@ -70,7 +76,7 @@ public class PaymentGateTest {
     }
 
     @Test
-    public void shouldNotPassPurchaseDrFstCardNameCyrillic() { // в баг-репорт
+    public void shouldNotPassPurchaseDrFstCardNameCyrillic() {
         OfferPage paymentGate = new OfferPage();
         paymentGate.getPurchaseDr();
         var fstCardInfo = getFstCardInfo();
@@ -78,7 +84,15 @@ public class PaymentGateTest {
     }
 
     @Test
-    public void shouldNotPassPurchaseDrFstCardNameLatOneLetter() { // в баг-репорт
+    public void shouldNotPassPurchaseDrFstCardNameJapan() {
+        OfferPage paymentGate = new OfferPage();
+        paymentGate.getPurchaseDr();
+        var fstCardInfo = getFstCardInfo();
+        paymentGate.fillCardFormFailNameJapan(fstCardInfo);
+    }
+
+    @Test
+    public void shouldNotPassPurchaseDrFstCardNameLatOneLetter() {
         OfferPage paymentGate = new OfferPage();
         paymentGate.getPurchaseDr();
         var fstCardInfo = getFstCardInfo();
@@ -86,15 +100,15 @@ public class PaymentGateTest {
     }
 
     @Test
-    public void shouldNotPassPurchaseDrFstCardNameSymbols() { // в баг-репорт
+    public void shouldNotPassPurchaseDrFstCardNameSpecChar() {
         OfferPage paymentGate = new OfferPage();
         paymentGate.getPurchaseDr();
         var fstCardInfo = getFstCardInfo();
-        paymentGate.fillCardFormFailNameSymbols(fstCardInfo);
+        paymentGate.fillCardFormFailNameSpecChar(fstCardInfo);
     }
 
     @Test
-    public void shouldNotPassPurchaseDrFstCardNameDigits() { // в баг-репорт
+    public void shouldNotPassPurchaseDrFstCardNameDigits() {
         OfferPage paymentGate = new OfferPage();
         paymentGate.getPurchaseDr();
         var fstCardInfo = getFstCardInfo();
@@ -102,7 +116,7 @@ public class PaymentGateTest {
     }
 
     @Test
-    public void shouldNotPassPurchaseDrFstCardNameSpace() { // в баг-репорт
+    public void shouldNotPassPurchaseDrFstCardNameSpace() {
         OfferPage paymentGate = new OfferPage();
         paymentGate.getPurchaseDr();
         var fstCardInfo = getFstCardInfo();
@@ -180,23 +194,4 @@ public class PaymentGateTest {
         var fstCardInfo = getFstCardInfo();
         paymentGate.fillCardFormFailCodeCvvEmpty(fstCardInfo);
     }
-
-    @Test
-    public void shouldReturnSQLDataWithoutCardNr() { // доработка
-        OfferPage paymentGate = new OfferPage();
-        paymentGate.getPurchaseDr();
-        shouldPassPurchaseDrFstCard();
-        SQLHelper.SQLCrRqst request = getSQLInfoCrRqst();
-        SQLHelper.SQLOrder order = getSQLInfoOrder();
-        SQLHelper.SQLPayment payment = getSQLInfoPayment();
-        System.out.println(request);
-        System.out.println(order);
-        System.out.println(payment);
-    }
-
-//    @Test
-//    public void shouldReturnAPIData() {
-//        APIHelper.UICardInfo uiCardInfo = DataHelper.CardInfo.getFstCardInfo();
-//        APIHelper.sendQueryToValidate(UICardInfo(DataHelper.getFstCardInfo()),200,"APPROVED");
-//    }
 }

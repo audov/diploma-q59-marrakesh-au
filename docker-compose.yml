@@ -8,10 +8,12 @@ services:
       MYSQL_DATABASE: app
       MYSQL_USER: app
       MYSQL_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: pass
     volumes:
       - ./data/mysql:/var/lib/mysql
     ports:
       - '3306:3306'
+
   db2:
     image: postgres:13-alpine
     restart: always
@@ -35,3 +37,13 @@ services:
     ports:
       - '9999:9999'
     command: "npm start"
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - '8081:80'
+    depends_on:
+      - db1
+    environment:
+      - PMA_ARBITRARY=1

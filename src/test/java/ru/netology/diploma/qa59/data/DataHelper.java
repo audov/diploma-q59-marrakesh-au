@@ -6,10 +6,12 @@ import lombok.Value;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Random;
 
 public class DataHelper {
 
     private static final Faker faker = new Faker(new Locale("en"));
+
 
     public static CardInfo getFstCardInfo() {
         return new CardInfo("4444 4444 4444 4441", "APPROVED");
@@ -47,19 +49,17 @@ public class DataHelper {
         return invalidMonth;
     }
 
-    public static String generateValidMonth(String pattern) {
-        //int addDays = (int) faker.number().randomNumber();
-        int addMonth = faker.number().numberBetween(0, 12);
-        pattern = "MM";
-        return LocalDate.now().plusMonths(addMonth).format(DateTimeFormatter.ofPattern(pattern));
+    public static String generateSpecChar() {
+        String[] genSpecChar = {"`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "'", "№", ";", ":", "?", "*", "_", "-", "+", "/"};
+        return genSpecChar[new Random().nextInt(genSpecChar.length)];
     }
 
-    @Value
-    public static class CardInfo {
-        String cardNr;
-        String cardStatus;
+        @Value
+        public static class CardInfo {
+            String cardNr;
+            String cardStatus;
+        }
     }
-}
 
 
 

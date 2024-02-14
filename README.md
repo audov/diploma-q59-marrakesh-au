@@ -9,11 +9,11 @@
 
 1. Установить на рабочую станцию и настроить следующие приложения:
    - IntelliJ IDEA
-   - Git Bash 
+   - Git
    - DBeaver Lite 
    - Docker Desktop
 2. Запустить Git Bash.
-3. терминале Git Bash выполнить команду git clone git@github.com:netology-code/qa-diploma.git/
+3. В терминале Git Bash выполнить команду git clone git@github.com:netology-code/qa-diploma.git/
 4. Открыть папку в IntelliJ IDEA, настроить проект (Open Module Settings--> Project --> Name = "...", -->SDK = correcto-11 java version 11.0.21)
 5. Создать файл build.gradle, настроить зависимости и установить плагины:
    plugins {
@@ -35,7 +35,7 @@
    }
 6. Создать директорию scr
 7. Сделать Rebuild проекта
-8. файл application.properties прописать путь к базе Postgresql "spring.datasource.url=jdbc:postgresql://localhost:5432/app", закомитить строку. 
+8. В файле application.properties прописать путь к базе Postgresql "spring.datasource.url=jdbc:postgresql://localhost:5432/app"
 9. Создать файл docker-compose.yml со следующими настройками:
    version: '3.1'
    services:
@@ -52,6 +52,7 @@
    - ./data/mysql:/var/lib/mysql
    ports:
    - '3306:3306'
+   
    db2:
    image: postgres:13-alpine
    restart: always
@@ -77,21 +78,21 @@
    command: "npm start"
 
 ##    АВТОТЕСТИРОВАНИЕ
+
+1. Запустить в терминале контейнеры командой docker compose up --build
+
+
 ### на базе MySQL
 
-1. Запустить в терминале БД MySQL командой docker run mysql:8.0 
-2. Запустить в терминале эмулятор банковских сервисов командой docker run node:8
-3. Запустить файл aqa-shop.jar 
-4. Запустить в терминале тесты командой ./gradlew test 
-5. Запустить в терминале команду ./gradlew allureReport для получения отчета по тестам
-6. Запустить в терминале docker stop mysql:8.0 
-7. Запустить в терминале docker stop node:8
-8. Остановить aqa-shop.jar
+* Запустить БД MySQL командой java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/app" -jar aqa-shop.jar
+* Запустить тесты командой ./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app"
+
 
 ### на базе PostgreSQL
 
-1. Запустить в терминале БД PostgreSQL командой docker run postgres:13-alpine
-2. Запустить в терминале эмулятор банковских сервисов командой docker run node:8
-3. Запустить файл aqa-shop.jar
-4. Запустить тесты в терминале командой ./gradlew test 
-5. Запустить в терминале команду ./gradlew allureReport для получения отчета по тестам
+* Запустить БД PostgreSQL командой java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar aqa-shop.jar
+* Запустить тесты в терминале командой ./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app"
+
+2. Запустить в терминале команду ./gradlew allureServe для получения отчета по тестам
+3. Остановить контейнеры командой docker compose down
+4. Остановить jar-файл командой java -jar aqa-shop.jar down

@@ -14,6 +14,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import static ru.netology.diploma.qa59.data.DataHelper.*;
 
 public class OfferPage {
+
     private static final SelenideElement cardImage = $(".Order_cardImage__Q69ii");
     private static final SelenideElement appContainer = $("h2");
     private static final SelenideElement cardHeading = $("h3");
@@ -157,6 +158,17 @@ public class OfferPage {
                 .shouldHave(Condition.exactText("Неверный формат"));
     }
 
+    public void fillCardFormFailNameJapan(CardInfo cardInfo) {
+        cardNrField.setValue(cardInfo.getCardNr());
+        cardMonthField.setValue(generateValidDate("MM"));
+        cardYearField.setValue(generateValidDate("yy"));
+        cardOwnerField.setValue(getRandomSurnameName("ja"));
+        cardCvcCvvNr.setValue(getRandomCardValidCode());
+        continueButton.click();
+        alertNoticeCardOwnerFormat
+                .shouldHave(Condition.exactText("Неверный формат"));
+    }
+
     public void fillCardFormFailNameLatOneLetter(CardInfo cardInfo) {
         cardNrField.setValue(cardInfo.getCardNr());
         cardMonthField.setValue(generateValidDate("MM"));
@@ -168,11 +180,11 @@ public class OfferPage {
                 .shouldHave(Condition.exactText("Неверный формат"));
     }
 
-    public void fillCardFormFailNameSymbols(CardInfo cardInfo) {
+    public void fillCardFormFailNameSpecChar(CardInfo cardInfo) {
         cardNrField.setValue(cardInfo.getCardNr());
         cardMonthField.setValue(generateValidDate("MM"));
         cardYearField.setValue(generateValidDate("yy"));
-        cardOwnerField.setValue("/%#");
+        cardOwnerField.setValue(generateSpecChar());
         cardCvcCvvNr.setValue(getRandomCardValidCode());
         continueButton.click();
         alertNoticeCardOwnerFormat
@@ -244,6 +256,7 @@ public class OfferPage {
         alertNoticeCardOwnerFormat
                 .shouldHave(Condition.exactText("Поле обязательно для заполнения"));
     }
+
     public void fillCardFormFailYearEmpty(CardInfo cardInfo) {
         cardNrField.setValue(cardInfo.getCardNr());
         cardMonthField.setValue(generateValidDate("MM"));
@@ -265,6 +278,7 @@ public class OfferPage {
         alertNoticeCardOwnerFormat
                 .shouldHave(Condition.exactText("Поле обязательно для заполнения"));
     }
+
     public void fillCardFormFailCodeCvvEmpty(CardInfo cardInfo) {
         cardNrField.setValue(cardInfo.getCardNr());
         cardMonthField.setValue(generateValidDate("MM"));
