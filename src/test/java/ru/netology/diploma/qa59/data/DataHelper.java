@@ -25,6 +25,10 @@ public class DataHelper {
         return new CardInfo("4444 4444 4444 4443", "DECLINED");
     }
 
+    public static CardInfo getVoidCardInfo() {
+        return new CardInfo("0000 0000 0000 0000", "DECLINED");
+    }
+
     public static String getRandomCardValidCode() {
         return faker.number().digits(3);
     }

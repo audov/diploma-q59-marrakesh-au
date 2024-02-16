@@ -58,10 +58,10 @@ public class CreditGateTest {
 
     @Test
     public void shouldNotPassPurchaseCrFstCardMonthFormat() {
-        OfferPage pcreditGate = new OfferPage();
-        pcreditGate.getPurchaseCr();
+        OfferPage creditGate = new OfferPage();
+        creditGate.getPurchaseCr();
         var fstCardInfo = getFstCardInfo();
-        pcreditGate.fillCardFormFailMonthFormat(fstCardInfo);
+        creditGate.fillCardFormFailMonthFormat(fstCardInfo);
     }
 
     @Test
@@ -134,6 +134,14 @@ public class CreditGateTest {
         creditGate.getPurchaseCr();
         var invalidCardInfo = getInvalidCardInfo();
         creditGate.fillCardFormFail(invalidCardInfo);
+    }
+
+    @Test
+    public void shouldNotPassPurchaseCrVoidCard() {
+        OfferPage creditGate = new OfferPage();
+        creditGate.getPurchaseCr();
+        var voidCardInfo = getVoidCardInfo();
+        creditGate.fillCardFormFail(voidCardInfo);
     }
 
     @Test

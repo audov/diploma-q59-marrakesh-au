@@ -1,1 +1,0 @@
-{"uuid":"79a96e7a-9f84-4ce8-85fd-267e412aa0ae","name":"CreditGateTest","children":["3776f5e2-be3e-4ca1-b158-1ae20450995f","305c7bf5-f48a-49f9-bc92-bf90035af577"],"befores":[{"name":"setUpAll","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1706521712792,"stop":1706521712815}],"afters":[],"start":1706521712727,"stop":1706521749284}

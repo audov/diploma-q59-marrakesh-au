@@ -140,6 +140,14 @@ public class PaymentGateTest {
     }
 
     @Test
+    public void shouldNotPassPurchaseDrVoidCard() {
+        OfferPage paymentGate = new OfferPage();
+        paymentGate.getPurchaseDr();
+        var voidCardInfo = getVoidCardInfo();
+        paymentGate.fillCardFormFail(voidCardInfo);
+    }
+
+    @Test
     public void shouldNotPassPurchaseDrFstCardMonthInvalid() {
         OfferPage paymentGate = new OfferPage();
         paymentGate.getPurchaseDr();

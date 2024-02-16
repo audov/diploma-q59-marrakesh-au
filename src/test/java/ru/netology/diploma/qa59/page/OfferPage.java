@@ -37,7 +37,8 @@ public class OfferPage {
     private static final SelenideElement alertNoticeCardMonthFormat = $$(".input__sub").findBy(text("Неверный формат"));
     private static final SelenideElement alertNoticeCardYearFormat = $$(".input__sub").findBy(text("Неверный формат"));
     private static final SelenideElement alertNoticeCardCodeFormat = $$(".input__sub").findBy(text("Неверный формат"));
-    private static final SelenideElement alertNoticeCardOwnerFormat = $$(".input__sub").findBy(text("Поле обязательно для заполнения"));
+    private static final SelenideElement alertNoticeCardOwnerFormat = $$(".input__sub").findBy(text("Неверный формат"));
+    private static final SelenideElement alertNoticeCardOwnerEmpty = $$(".input__sub").findBy(text("Поле обязательно для заполнения"));
     private static final SelenideElement alertNoticeCardMonthInvalid = $$(".input__sub").findBy(text("Неверно указан срок действия карты"));
     private static final SelenideElement alertNoticeCardYearInvalid = $$(".input__sub").findBy(text("Неверно указан срок действия карты"));
     private static final SelenideElement failNotificationTitle = $$(".notification__title").findBy((text("Ошибка")));
@@ -116,7 +117,7 @@ public class OfferPage {
 
     public void fillCardFormFailMonthFormat(CardInfo cardInfo) {
         cardNrField.setValue(cardInfo.getCardNr());
-        cardMonthField.setValue(generateValidDate("M"));
+        cardMonthField.setValue(generateValidDate("MM").substring(1, 1));
         cardYearField.setValue(generateValidDate("yy"));
         cardOwnerField.setValue(getRandomSurnameName("en"));
         cardCvcCvvNr.setValue(getRandomCardValidCode());
@@ -195,7 +196,7 @@ public class OfferPage {
         cardNrField.setValue(cardInfo.getCardNr());
         cardMonthField.setValue(generateValidDate("MM"));
         cardYearField.setValue(generateValidDate("yy"));
-        cardOwnerField.setValue("1111");
+        cardOwnerField.setValue(getRandomCardValidCode());
         cardCvcCvvNr.setValue(getRandomCardValidCode());
         continueButton.click();
         alertNoticeCardOwnerFormat
@@ -217,7 +218,7 @@ public class OfferPage {
         cardNrField.setValue(cardInfo.getCardNr());
         cardMonthField.setValue(String.valueOf(generateInvalidMonth()));
         cardYearField.setValue(generateValidDate("yy"));
-        cardOwnerField.setValue(getRandomSurnameName("ru"));
+        cardOwnerField.setValue(getRandomSurnameName("en"));
         cardCvcCvvNr.setValue(getRandomCardValidCode());
         continueButton.click();
         alertNoticeCardMonthInvalid
@@ -226,9 +227,9 @@ public class OfferPage {
 
     public void fillCardFormFailYearInvalid(CardInfo cardInfo) {
         cardNrField.setValue(cardInfo.getCardNr());
-        cardMonthField.setValue(generateValidDate("MM"));
+        cardMonthField.setValue(generateInvalidDate("MM"));
         cardYearField.setValue(generateInvalidDate("yy"));
-        cardOwnerField.setValue(getRandomSurnameName("ru"));
+        cardOwnerField.setValue(getRandomSurnameName("en"));
         cardCvcCvvNr.setValue(getRandomCardValidCode());
         continueButton.click();
         alertNoticeCardYearInvalid
@@ -242,7 +243,7 @@ public class OfferPage {
         cardOwnerField.setValue(getRandomSurnameName("en"));
         cardCvcCvvNr.setValue(getRandomCardValidCode());
         continueButton.click();
-        alertNoticeCardOwnerFormat
+        alertNoticeCardOwnerEmpty
                 .shouldHave(Condition.exactText("Поле обязательно для заполнения"));
     }
 
@@ -253,7 +254,7 @@ public class OfferPage {
         cardOwnerField.setValue(getRandomSurnameName("en"));
         cardCvcCvvNr.setValue(getRandomCardValidCode());
         continueButton.click();
-        alertNoticeCardOwnerFormat
+        alertNoticeCardOwnerEmpty
                 .shouldHave(Condition.exactText("Поле обязательно для заполнения"));
     }
 
@@ -264,7 +265,7 @@ public class OfferPage {
         cardOwnerField.setValue(getRandomSurnameName("en"));
         cardCvcCvvNr.setValue(getRandomCardValidCode());
         continueButton.click();
-        alertNoticeCardOwnerFormat
+        alertNoticeCardOwnerEmpty
                 .shouldHave(Condition.exactText("Поле обязательно для заполнения"));
     }
 
@@ -275,7 +276,7 @@ public class OfferPage {
         cardOwnerField.setValue(getRandomSurnameName("en").substring(1, 1));
         cardCvcCvvNr.setValue(getRandomCardValidCode());
         continueButton.click();
-        alertNoticeCardOwnerFormat
+        alertNoticeCardOwnerEmpty
                 .shouldHave(Condition.exactText("Поле обязательно для заполнения"));
     }
 
@@ -286,7 +287,7 @@ public class OfferPage {
         cardOwnerField.setValue(getRandomSurnameName("en"));
         cardCvcCvvNr.setValue("");
         continueButton.click();
-        alertNoticeCardOwnerFormat
+        alertNoticeCardOwnerEmpty
                 .shouldHave(Condition.exactText("Поле обязательно для заполнения"));
     }
 }
