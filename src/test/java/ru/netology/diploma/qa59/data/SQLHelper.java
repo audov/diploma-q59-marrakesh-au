@@ -13,10 +13,13 @@ import java.sql.SQLException;
 public class SQLHelper {
     private static QueryRunner runner = new QueryRunner();
 
+    private static final String url = System.getProperty("url");
+    private static final String user = System.getProperty("user");
+    private static final String password = System.getProperty("password");
+
     private static Connection getConn() throws SQLException {
 
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
-        //return DriverManager.getConnection("jdbc:postgresql://localhost:5432/app", "app", "pass");
+        return DriverManager.getConnection(url, user, password);
     }
 
     @SneakyThrows

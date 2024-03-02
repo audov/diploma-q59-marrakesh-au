@@ -8,7 +8,6 @@ import ru.netology.diploma.qa59.page.OfferPage;
 
 import static org.junit.Assert.assertEquals;
 import static ru.netology.diploma.qa59.data.DataHelper.*;
-import static ru.netology.diploma.qa59.data.SQLHelper.*;
 
 public class PaymentGateTest {
 
